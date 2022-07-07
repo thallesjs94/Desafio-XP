@@ -5,4 +5,4 @@ pip install requests
 
 pip install openpyxl
 
-O código irá gerar uma planilha com nome de "Resultado.xlsx" assim que executado, na pasta raíz onde o projeto foi clonado, em caso de sucesso.
+O código irá gerar uma planilha com nome de "Resultado.xlsx" assim que executado, na pasta raíz onde o projeto foi clonado em caso de sucesso.
