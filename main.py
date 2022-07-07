@@ -61,27 +61,36 @@ def generateResult():
 
     if apiResponse != 'Erro ao consultar API':
         try:
+            #Inicia o arquivo excel
             wb = Workbook()
 
             sheet = wb.worksheets[0]
+
+            #Preenche o cabeçalho
             sheet['A1'] = 'Ano com mais lançamentos'
             sheet['B1'] = 'Launch Site com mais lançamentos'
             sheet['C1'] = 'Total lançamentos entre 2019 e 2021'
 
+            #Looping para cada lançamento obtido como resposta da API
             for flight in apiResponse:
                 year = flight["launch_year"]
                 siteId = flight["launch_site"]["site_id"]
                 listYears.append(year)
                 listSites.append(siteId)
 
+            #Obtém o ano que houve mais lançamentos
             yearMostFrequent = mostFrequent(listYears)
+            #Obtém o Launch_Site que teve mais lançamentos
             siteMostFrequent = mostFrequent(listSites)
+            #Obtém o total de lançamentos entre os anos de 2019 e 2021
             totalLaunch = totalLaunchBetweenValues(listYears, 2019, 2021)
 
+            #Insere na planilha o resultado
             sheet['A2'] = yearMostFrequent
             sheet['B2'] = siteMostFrequent
             sheet['C2'] = totalLaunch
 
+            #Salva planilha com nome de 'Result', no arquivo 'Resultado.xlsx' na pasta raíz do projeto
             sheet.title = 'Result'
             wb.save(rootDir + r'\Resultado.xlsx')
             wb.close()
